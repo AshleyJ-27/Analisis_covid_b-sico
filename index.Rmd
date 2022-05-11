@@ -1,0 +1,16 @@
+---
+title: "Análisis-datos-COVID_19"
+author: "Ashley Jump"
+date: '2022-05-11'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Presentación
+Este documento present grafico generdos apartir de los datos de COVID-19 en Costa Rica compartidos por el Mininestrio de Salud.
+
+[https://geovision.uned.ac.cr/oges/
+]()
