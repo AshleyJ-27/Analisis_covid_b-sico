@@ -3,26 +3,32 @@ title: "Análisis-datos-COVID_19"
 author: "Ashley Jump"
 date: '2022-05-11'
 output: 
-  html_document
+  html_document:
+    theme: readable    
+    toc: true
+    toc_depth: 5
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Presentación
+# Presentación
 Este documento present grafico generdos apartir de los datos de COVID-19 en Costa Rica compartidos por el Mininestrio de Salud en
 
 [https://geovision.uned.ac.cr/oges/
 ]()
 
-## Entradas
+# Entradas
 
 ```{r carga-datos}
 covid <- read.csv(file= "05_10_22_CSV_GENERAL.csv", sep= ";")
 ```
 
-## Procesamiento
+# Procesamiento
 
 ## Opciones generales
 ```{r opciones-generales}
@@ -36,13 +42,13 @@ covid$FECHA <- as.Date(covid$FECHA, format = "%d/%m/%Y")
 ```
 
 
-## Salidas
+# Salidas
 
-### Graficos
+## Graficos
 
-#### Casos acumulados
+### Casos acumulados
 
-##### Positivos
+#### Positivos
 
 ```{r casos-positivos-acumulados}
 plot(
@@ -75,7 +81,7 @@ axis(
 )
 ```
 
-##### Fallecidos
+#### Fallecidos
 ```{r fallecidos_por_COVID-19}
 # Gráfico de barras
 barplot(
@@ -102,7 +108,7 @@ axis(
   lwd = 0)
 ```
 
-# Otros
+#### Otros
 
 ```{r}
 # Gráfico de líneas de casos activos
