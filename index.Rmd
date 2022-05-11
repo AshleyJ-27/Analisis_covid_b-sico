@@ -2,7 +2,8 @@
 title: "Análisis-datos-COVID_19"
 author: "Ashley Jump"
 date: '2022-05-11'
-output: html_document
+output: 
+  html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -29,22 +30,76 @@ options(scipen = 7)
 ```
 
 
-### Curación de datos
-```{r conversión de fecha}
+### Curacion de datos
+```{r conversion de fecha}
 covid$FECHA <- as.Date(covid$FECHA, format = "%d/%m/%Y")
 ```
 
 
-##Salidas
+## Salidas
 
-### Gráficos
+### Graficos
 
 #### Casos acumulados
 
 ##### Positivos
 
 ```{r casos-positivos-acumulados}
-plot(covid$FECHA, covid$positivos, main= "casos acumuldos positivos de COVID-19 en Costa Rica", xlb= "Fecha", ylab= "Casos")
+plot(
+  covid$FECHA,
+  covid$positivos,
+  type = "l",
+  xaxt = "n",
+  yaxt = "n",
+  main = "casos acumuldos positivos de COVID-19 en Costa Rica",
+  xlb = "Fecha",
+  ylab = "Casos"
+)
+
+# Formato del eje x
+axis(
+  side = 1,
+  covid$FECHA,
+  tick = FALSE,
+  format(covid$FECHA, "%m-%y"),
+  cex.axis = .7
+)
+
+# Formato del eje y
+axis(
+  side = 2,
+  covid$fallecidos,
+  labels = TRUE,  
+  at = seq(0,1000000, by = 200000),
+  cex.axis = .7
+)
+```
+
+### Fallecidos
+```{r fallecidos_por_COVID-19}
+# Gráfico de barras
+barplot(
+  height=covid$nue_falleci,
+  names.arg=format(covid$FECHA, "%Y"),
+  ann = FALSE, 
+  bty = "n", 
+  tck = 0, 
+  xaxt = "n",
+  space = 1,
+  main="Casos fallecidos por día",
+  xlab = "Fecha",
+  ylab = "Casos fallecidos",
+  col = "black"
+)
+# Fechas minima y máxima
+x_min <- min(covid$FECHA)
+x_max <- max(covid$FECHA)
+# Formato del eje X
+axis(
+  side = 1,
+  at = match(seq(as.Date(x_min), x_max, "years"), covid$FECHA) * (1 + 1),
+  labels = format(seq(as.Date(x_min), x_max, "years"), "%Y"),
+  lwd = 0)
 ```
 
 
